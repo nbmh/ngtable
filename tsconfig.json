@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"declaration": false,
+		"noImplicitAny": false,
+		"removeComments": true,
+		"noLib": false,
+		"sourceMap": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": ["es2015", "dom"]
+	},
+	"files": [
+		"node_modules/typescript/lib/lib.es6.d.ts",
+		"src/app.ts"
+	],
+	"compileOnSave": false,
+	"buildOnSave": false,
+	"angularCompilerOptions": {
+		"skipMetadataEmit": true
+	}
+}
