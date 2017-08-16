@@ -1,0 +1,10 @@
+[{"firstname": "Robin", "lastname": "Phillips", "email": "r.phillips@example.org"},
+{"firstname": "Franky", "lastname": "Stewart", "email": "f.stewart@example.org"},
+{"firstname": "Blake", "lastname": "Butler", "email": "b.butler@example.org"},
+{"firstname": "Jesse", "lastname": "Palmer", "email": "j.palmer@example.org"},
+{"firstname": "Jaden", "lastname": "Gallagher", "email": "j.gallagher@example.org"},
+{"firstname": "Kit", "lastname": "Holman", "email": "k.holman@example.org"},
+{"firstname": "Glen", "lastname": "Jennings", "email": "g.jennings@example.org"},
+{"firstname": "Noel", "lastname": "Ramirez", "email": "n.ramirez@example.org"},
+{"firstname": "Aiden", "lastname": "Kent", "email": "a.kent@example.org"},
+{"firstname": "Blake", "lastname": "Weiss", "email": "b.weiss@example.org"}]
