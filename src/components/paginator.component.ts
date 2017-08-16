@@ -4,7 +4,7 @@ import { MdSelectChange } from '@angular/material';
 
 @Component({
   selector: 'ng-table-paginator',
-  templateUrl: './paginator.component.html',
+  template: require('./paginator.component.html'),
   styleUrls: ['./paginator.component.scss'],
   host: {'class': 'ng-table-paginator'}
 })
