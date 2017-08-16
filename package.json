@@ -65,8 +65,7 @@
     "bundle": "uglifyjs --compress --mangle --output bundles/core.umd.min.js -- bundles/core.umd.js",
     "clean": "node node_modules/rimraf/bin dist bundles",
     "prebuild": "npm run clean",
-    "assets": "copyup src/**/*.html src/**/*.scss src/**/*.css dist/",
-    "build": "npm run ngc && npm run assets && npm run bundle",
+    "build": "npm run ngc && npm run bundle",
     "dev": "node node_modules/webpack-dev-server/bin/webpack-dev-server --port=8080 --hot --progress --config config/webpack.dev.js"
   },
   "repository": {
