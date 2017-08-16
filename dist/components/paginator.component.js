@@ -31,7 +31,7 @@ export { NgTablePaginator };
 NgTablePaginator.decorators = [
     { type: Component, args: [{
                 selector: 'ng-table-paginator',
-                templateUrl: './paginator.component.html',
+                template: require('./paginator.component.html'),
                 styleUrls: ['./paginator.component.scss'],
                 host: { 'class': 'ng-table-paginator' }
             },] },
