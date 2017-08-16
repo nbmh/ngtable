@@ -26,6 +26,8 @@ module.exports = {
   }, {
     test: /\.html$/,
     use: [{
+      loader: 'template-url-loader'
+    }, {
       loader: 'html-loader',
       options: {
         minimize: false,
@@ -36,9 +38,11 @@ module.exports = {
   }, {
     test: /\.scss$/,
     use: [{
-      loader: "raw-loader"
+      loader: 'template-url-loader'
     }, {
-      loader: "sass-loader"
+      loader: 'raw-loader'
+    }, {
+      loader: 'sass-loader'
     }]
   }, {
     test: /\.css$/,
