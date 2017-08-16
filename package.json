@@ -25,6 +25,7 @@
     "awesome-typescript-loader": "^3.2.3",
     "bluebird": "^3.5.0",
     "compression-webpack-plugin": "^0.3.1",
+    "copyfiles": "^1.2.0",
     "core-js": "^2.5.0",
     "css-loader": "^0.28.4",
     "es6-shim": "^0.35.1",
@@ -64,7 +65,8 @@
     "bundle": "uglifyjs --compress --mangle --output bundles/core.umd.min.js -- bundles/core.umd.js",
     "clean": "node node_modules/rimraf/bin dist bundles",
     "prebuild": "npm run clean",
-    "build": "npm run ngc && npm run bundle",
+    "assets": "copyup src/**/*.html src/**/*.scss src/**/*.css dist/",
+    "build": "npm run ngc && npm run assets && npm run bundle",
     "dev": "node node_modules/webpack-dev-server/bin/webpack-dev-server --port=8080 --hot --progress --config config/webpack.dev.js"
   },
   "repository": {
