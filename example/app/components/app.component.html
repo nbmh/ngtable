@@ -2,9 +2,9 @@
   <md-card-title>Simple table</md-card-title>
   <ng-table #ngTableSimple [dataSource]="sourceSimple">
     <ng-table-header-row>
-      <ng-table-cell>Firstname</ng-table-cell>
-      <ng-table-cell>Lastname</ng-table-cell>
-      <ng-table-cell>Email</ng-table-cell>
+      <ng-table-header-cell>Firstname</ng-table-header-cell>
+      <ng-table-header-cell>Lastname</ng-table-header-cell>
+      <ng-table-header-cell>Email</ng-table-header-cell>
     </ng-table-header-row>
     <ng-table-row *ngFor="let row of ngTableSimple.rows">
       <ng-table-cell>{{row.firstname}}</ng-table-cell>
@@ -21,9 +21,9 @@
   <md-card-title>Table with pagination</md-card-title>
   <ng-table #ngTablePagination [dataSource]="sourcePagination" range="4" [rangeOptions]="[2, 4, 6, 10, 20]">
     <ng-table-header-row>
-      <ng-table-cell>Firstname</ng-table-cell>
-      <ng-table-cell>Lastname</ng-table-cell>
-      <ng-table-cell>Email</ng-table-cell>
+      <ng-table-header-cell>Firstname</ng-table-header-cell>
+      <ng-table-header-cell>Lastname</ng-table-header-cell>
+      <ng-table-header-cell>Email</ng-table-header-cell>
     </ng-table-header-row>
     <ng-table-row *ngFor="let row of ngTablePagination.rows">
       <ng-table-cell>{{row.firstname}}</ng-table-cell>
@@ -51,9 +51,9 @@
   </div>
   <ng-table #ngTableFilter [dataSource]="sourceFilter" range="4" [rangeOptions]="[2, 4, 6, 10, 20]">
     <ng-table-header-row>
-      <ng-table-cell>Firstname</ng-table-cell>
-      <ng-table-cell>Lastname</ng-table-cell>
-      <ng-table-cell>Email</ng-table-cell>
+      <ng-table-header-cell>Firstname</ng-table-header-cell>
+      <ng-table-header-cell>Lastname</ng-table-header-cell>
+      <ng-table-header-cell>Email</ng-table-header-cell>
     </ng-table-header-row>
     <ng-table-row *ngFor="let row of ngTableFilter.rows">
       <ng-table-cell>{{row.firstname}}</ng-table-cell>
@@ -68,4 +68,38 @@
     </ng-table-row>
   </ng-table>
   <ng-table-paginator [ngTable]="ngTableFilter"></ng-table-paginator>
+</md-card>
+<br />
+<md-card>
+  <md-card-title>Table with sorting</md-card-title>
+  <ng-table #ngTableSort [dataSource]="sourceSort" range="5">
+    <ng-table-header-row>
+      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('firstname')">
+        <span>Firstname</span>
+        <md-icon class="material-icons" *ngIf="checkSort('firstname', 'asc')">arrow_downward</md-icon>
+        <md-icon class="material-icons" *ngIf="checkSort('firstname', 'desc')">arrow_upward</md-icon>
+      </ng-table-header-cell>
+      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('lastname')">
+        <span>Lastname</span>
+        <md-icon class="material-icons" *ngIf="checkSort('lastname', 'asc')">arrow_downward</md-icon>
+        <md-icon class="material-icons" *ngIf="checkSort('lastname', 'desc')">arrow_upward</md-icon>
+      </ng-table-header-cell>
+      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('email')">
+        <span>Email</span>
+        <md-icon class="material-icons" *ngIf="checkSort('email', 'asc')">arrow_downward</md-icon>
+        <md-icon class="material-icons" *ngIf="checkSort('email', 'desc')">arrow_upward</md-icon>
+      </ng-table-header-cell>
+    </ng-table-header-row>
+    <ng-table-row *ngFor="let row of ngTableSort.rows">
+      <ng-table-cell>{{row.firstname}}</ng-table-cell>
+      <ng-table-cell>{{row.lastname}}</ng-table-cell>
+      <ng-table-cell>{{row.email}}</ng-table-cell>
+    </ng-table-row>
+    <ng-table-row *ngIf="ngTableSort.empty" class="text-center">
+      <ng-table-cell>No records</ng-table-cell>
+    </ng-table-row>
+  </ng-table>
+  <ng-table-paginator [ngTable]="ngTableSort"></ng-table-paginator>
+
+  <button md-raised-button type="button" (click)="setSort('')" [disabled]="sourceSort.params.sort==''">Remove sorting</button>
 </md-card>

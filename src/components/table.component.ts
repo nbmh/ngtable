@@ -26,7 +26,7 @@ import { Observable } from 'rxjs/Rx';
   border-bottom-width: 1px;
   border-bottom-style: solid;
   align-items: center;
-  height: 48px;
+  min-height: 48px;
   padding: 0 12px;
 }
 
