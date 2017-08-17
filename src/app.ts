@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgTable } from './components/table.component';
 import { NgTableHeaderRow } from './components/header-row.component';
+import { NgTableHeaderCell } from './components/header-cell.component';
 import { NgTableRow } from './components/row.component';
 import { NgTableCell } from './components/cell.component';
 import { NgTablePaginator } from './components/paginator.component';
@@ -19,6 +20,7 @@ export { INgTableSourceParams } from './ngtable.params';
 export { NgTableSourceResult } from './ngtable.result';
 export { NgTable } from './components/table.component';
 export { NgTableHeaderRow } from './components/header-row.component';
+export { NgTableHeaderCell } from './components/header-cell.component';
 export { NgTableRow } from './components/row.component';
 export { NgTableCell } from './components/cell.component';
 export { NgTablePaginator } from './components/paginator.component';
@@ -44,6 +46,7 @@ export class NgTableRoutingModule { }
   declarations: [
     NgTable,
     NgTableHeaderRow,
+    NgTableHeaderCell,
     NgTableRow,
     NgTableCell,
     NgTablePaginator
@@ -54,6 +57,7 @@ export class NgTableRoutingModule { }
   exports: [
     NgTable,
     NgTableHeaderRow,
+    NgTableHeaderCell,
     NgTableRow,
     NgTableCell,
     NgTablePaginator

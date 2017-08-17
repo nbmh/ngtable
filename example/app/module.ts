@@ -13,6 +13,7 @@ import { AppComponent } from './components/app.component';
 import { SimpleSource } from './sources/simple.source';
 import { PaginationSource } from './sources/pagination.source';
 import { FilterSource, FilterSourceParams } from './sources/filter.source';
+import { SortSource } from './sources/sort.source';
 import { HttpClient } from './services/httpClient.service';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { HttpClient } from './services/httpClient.service';
     SimpleSource,
     PaginationSource,
     FilterSource,
+    SortSource,
     HttpClient
   ],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ export { INgTableSourceParams } from './ngtable.params';
 export { NgTableSourceResult } from './ngtable.result';
 export { NgTable } from './components/table.component';
 export { NgTableHeaderRow } from './components/header-row.component';
+export { NgTableHeaderCell } from './components/header-cell.component';
 export { NgTableRow } from './components/row.component';
 export { NgTableCell } from './components/cell.component';
 export { NgTablePaginator } from './components/paginator.component';

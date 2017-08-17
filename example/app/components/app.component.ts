@@ -3,6 +3,7 @@ import { NgTable, NgTableBeforeConnectEvent, NgTableAfterConnectEvent } from '..
 import { SimpleSource } from '../sources/simple.source';
 import { PaginationSource } from '../sources/pagination.source';
 import { FilterSource, FilterSourceParams } from '../sources/filter.source';
+import { SortSource, SortSourceParams, SortSourceSort, SortSourceOrder } from '../sources/sort.source';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -16,8 +17,10 @@ export class AppComponent implements OnInit {
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild('ngTablePagination') ngTablePagination: NgTable;
+  @ViewChild('ngTableSort') ngTableSort: NgTable;
 
-  constructor(private sourceSimple: SimpleSource, private sourcePagination: PaginationSource, private sourceFilter: FilterSource) {
+  constructor(private sourceSimple: SimpleSource, private sourcePagination: PaginationSource,
+    private sourceFilter: FilterSource, private sourceSort: SortSource) {
 
   }
 
@@ -40,6 +43,26 @@ export class AppComponent implements OnInit {
   resetFilter() {
     this.filterParams.query = '';
     this.sourceFilter.params = this.filterParams;
+  }
+
+  setSort(name: string) {
+    let params: SortSourceParams = this.sourceSort.params as SortSourceParams;
+
+    if (params.sort == name) {
+      if (params.order == SortSourceSort.asc) {
+        params.order = SortSourceSort.desc;
+      } else {
+        params.order = SortSourceSort.asc;
+      }
+    }
+
+    params.sort = name;
+    this.ngTableSort.refresh();
+  }
+
+  checkSort(name: string, order: SortSourceOrder) {
+    let params: SortSourceParams = this.sourceSort.params as SortSourceParams;
+    return params.sort == name && params.order == order;
   }
 
 }
