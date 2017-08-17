@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgTableRow } from './row.component';
 
 @Component({
   selector: 'ng-table-cell',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   host: {'class': 'ng-table-cell'}
 })
 export class NgTableCell {
+
+  constructor(private parent: NgTableRow) {
+
+  }
 
 }
