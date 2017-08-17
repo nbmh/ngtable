@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NgTableRow } from './row.component';
 var NgTableCell = (function () {
-    function NgTableCell() {
+    function NgTableCell(parent) {
+        this.parent = parent;
     }
     return NgTableCell;
 }());
@@ -13,5 +15,7 @@ NgTableCell.decorators = [
             },] },
 ];
 /** @nocollapse */
-NgTableCell.ctorParameters = function () { return []; };
+NgTableCell.ctorParameters = function () { return [
+    { type: NgTableRow, },
+]; };
 //# sourceMappingURL=cell.component.js.map

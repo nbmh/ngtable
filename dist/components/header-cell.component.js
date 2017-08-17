@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NgTableHeaderRow } from './header-row.component';
 var NgTableHeaderCell = (function () {
-    function NgTableHeaderCell() {
+    function NgTableHeaderCell(parent) {
+        this.parent = parent;
     }
     return NgTableHeaderCell;
 }());
@@ -13,5 +15,7 @@ NgTableHeaderCell.decorators = [
             },] },
 ];
 /** @nocollapse */
-NgTableHeaderCell.ctorParameters = function () { return []; };
+NgTableHeaderCell.ctorParameters = function () { return [
+    { type: NgTableHeaderRow, },
+]; };
 //# sourceMappingURL=header-cell.component.js.map
