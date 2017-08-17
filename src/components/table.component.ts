@@ -12,56 +12,48 @@ import { Observable } from 'rxjs/Rx';
   <ng-content></ng-content>
   `,
   styles: [`
-:host(.ng-table) /deep/ {
+:host(.ng-table) {
   background: #fff;
   overflow: auto;
   display: flex;
   flex-direction: column;
-
-  .ng-table-filter {
-    display: none;
-  }
-
-  .ng-table-header-row,
-  .ng-table-row {
-    border-bottom-color: rgba(0,0,0,.12);
-    display: flex;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    align-items: center;
-    height: 48px;
-    padding: 0 12px;
-  }
-
-  .ng-table-header-cell {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(0,0,0,.54);
-    flex: 1;
-  }
-
-  .ng-table-cell {
-    font-size: 14px;
-    color: rgba(0,0,0,.87);
-    flex: 1;
-  }
-
-  .ng-table-icon {
-    width: 40px;
-    height: 40px;
-  }
 }
 
-:host(.ng-table-striped) /deep/ {
-  .ng-table-row:nth-of-type(odd) {
-    background-color: #f9f9f9;
-  }
+:host(.ng-table) /deep/ .ng-table-header-row,
+:host(.ng-table) /deep/ .ng-table-row {
+  border-bottom-color: rgba(0, 0, 0, .12);
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
 }
 
-:host(.ng-table-hover.ng-table-striped) /deep/ {
-  .ng-table-row:hover {
-    background-color: #f5f5f5;
-  }
+:host(.ng-table) /deep/ .ng-table-header-cell {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .54);
+  flex: 1;
+}
+
+:host(.ng-table) /deep/ .ng-table-cell {
+  font-size: 14px;
+  color: rgba(0,0,0,.87);
+  flex: 1;
+}
+
+:host(.ng-table) /deep/ .ng-table-icon {
+  width: 40px;
+  height: 40px;
+}
+
+:host(.ng-table-striped) /deep/ .ng-table-row:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+:host(.ng-table-striped.ng-table-hover) /deep/ .ng-table-row:hover {
+  background-color: #f5f5f5;
 }
   `],
   host: {'class': 'ng-table'}

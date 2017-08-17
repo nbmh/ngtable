@@ -25,7 +25,7 @@ import { MdSelectChange } from '@angular/material';
 <button md-icon-button *ngIf="!table.empty" (click)="table.next()" [disabled]="!table.hasNext || table.loading" mdTooltip="Next page"><md-icon class="material-icons">keyboard_arrow_right</md-icon></button>
   `,
   styles: [`
-:host(.ng-table-paginator) /deep/ {
+:host(.ng-table-paginator) {
   font-family: Roboto,Helvetica Neue,sans-serif;
   font-size: 12px;
   background: #fff;
@@ -35,27 +35,24 @@ import { MdSelectChange } from '@angular/material';
   justify-content: flex-end;
   min-height: 56px;
   padding: 0 8px;
+}
 
-  .ng-table-paginator-page-size {
-    display: flex;
-    align-items: center;
+:host(.ng-table-paginator) /deep/ .ng-table-paginator-page-size {
+  display: flex;
+  align-items: center;
+}
 
-    .ng-table-paginator-page-size-label {
-      margin: 0 8px 0 0;
-    }
+:host(.ng-table-paginator) /deep/ .ng-table-paginator-page-size-label {
+  margin: 0 8px 0 0;
+}
 
-    .ng-table-paginator-page-size-select {
+:host(.ng-table-paginator) /deep/ .ng-table-paginator-page-size-select .mat-select-trigger {
+  min-width: 60px;
+  font-size: 12px;
+}
 
-      .mat-select-trigger {
-        min-width: 60px;
-        font-size: 12px;
-      }
-    }
-  }
-
-  .ng-table-paginator-page-label {
-    margin: 0 32px;
-  }
+:host(.ng-table-paginator) /deep/ .ng-table-paginator-page-label {
+  margin: 0 32px;
 }
   `],
   host: {'class': 'ng-table-paginator'}
