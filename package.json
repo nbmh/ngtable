@@ -1,6 +1,6 @@
 {
   "name": "ngtable",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "angular2 table/pagination support",
   "main": "bundles/core.umd.js",
   "module": "dist/app.js",
@@ -25,6 +25,7 @@
     "awesome-typescript-loader": "^3.2.3",
     "bluebird": "^3.5.0",
     "compression-webpack-plugin": "^0.3.1",
+    "copyfiles": "^1.2.0",
     "core-js": "^2.5.0",
     "css-loader": "^0.28.4",
     "es6-shim": "^0.35.1",
