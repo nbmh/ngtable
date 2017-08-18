@@ -46,17 +46,7 @@ var NgTable = (function () {
             }
             this._dataSourceSubscriber = this._dataSource.connection.subscribe(function (result) {
                 if (result) {
-                    _this._rows = result.data;
-                    _this._totalRows = result.totalRows;
-                    _this._totalPages = Math.ceil(_this._totalRows / _this._dataSource.range);
-                    if (_this._page > _this._totalPages) {
-                        _this._page = 1;
-                    }
-                    _this._from = ((_this._page - 1) * _this._dataSource.range) + 1;
-                    _this._to = _this._from + _this._dataSource.range - 1;
-                    if (_this._to > _this._totalRows) {
-                        _this._to = _this._totalRows;
-                    }
+                    _this.calculate(result.data, result.totalRows);
                     _this.afterConnectEmitter.emit(new NgTableAfterConnectEvent(_this, result));
                 }
             });
@@ -64,12 +54,45 @@ var NgTable = (function () {
         enumerable: true,
         configurable: true
     });
+    NgTable.prototype.calculate = function (rows, totalRows) {
+        this._rows = rows;
+        this._totalRows = totalRows;
+        this._totalPages = Math.ceil(this._totalRows / this._dataSource.range);
+        if (this._page > this._totalPages) {
+            this._page = 1;
+        }
+        this._from = ((this._page - 1) * this._dataSource.range) + 1;
+        this._to = this._from + this._dataSource.range - 1;
+        if (this._to > this._totalRows) {
+            this._to = this._totalRows;
+        }
+    };
     NgTable.prototype.requestData = function () {
         if (!this._dataSource.loading) {
             this._dataSource.params.offset = (this._page - 1) * this._dataSource.range;
             this.beforeConnectEmitter.emit(new NgTableBeforeConnectEvent(this, this._dataSource.params));
             this._dataSource.getData(this._dataSource.params);
         }
+    };
+    NgTable.prototype.removeRow = function (row) {
+        var index = this._rows.indexOf(row);
+        if (index > -1) {
+            this._rows.splice(index, 1);
+        }
+        this.calculate(this._rows, this.totalRows - 1);
+        return this;
+    };
+    NgTable.prototype.updateRow = function (row) {
+        var index = this._rows.indexOf(row);
+        if (index > -1) {
+            this._rows.splice(index, 1, row);
+        }
+        return this;
+    };
+    NgTable.prototype.addRow = function (row) {
+        this._rows.push(row);
+        this.calculate(this._rows, this.totalRows + 1);
+        return this;
     };
     Object.defineProperty(NgTable.prototype, "rows", {
         get: function () {
