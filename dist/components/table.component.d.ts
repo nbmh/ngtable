@@ -25,7 +25,11 @@ export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     dataSource: NgTableSource;
+    protected calculate(rows: any[], totalRows: number): void;
     protected requestData(): void;
+    removeRow(row: any): NgTable;
+    updateRow(row: any): NgTable;
+    addRow(row: any): NgTable;
     readonly rows: Array<any>;
     queryPage: string;
     page: number;
