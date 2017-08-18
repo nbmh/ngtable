@@ -45,7 +45,7 @@
   <md-card-title>Table with search filter</md-card-title>
   <div fxLayout="row" fxLayoutAlign="start center">
     <md-input-container fxFlex>
-      <input mdInput name="filter" placeholder="Search" #filter [(ngModel)]="this.filterParams.query" />
+      <input mdInput name="filter" placeholder="Search" #filter [(ngModel)]="filterParams.query" />
     </md-input-container>
     <button md-icon-button (click)="resetFilter()" mdTooltip="Clear" mdTooltipPosition="before" [disabled]="!filterParams.query!=''"><md-icon class="material-icons">close</md-icon></button>
   </div>

@@ -119,24 +119,27 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
 
     this._dataSourceSubscriber = this._dataSource.connection.subscribe((result: NgTableSourceResult) => {
       if (result) {
-        this._rows = result.data;
-        this._totalRows = result.totalRows;
-        this._totalPages = Math.ceil(this._totalRows / this._dataSource.range);
-
-        if (this._page > this._totalPages) {
-          this._page = 1;
-        }
-
-        this._from = ((this._page - 1) * this._dataSource.range) + 1;
-        this._to = this._from + this._dataSource.range - 1;
-
-        if (this._to > this._totalRows) {
-          this._to = this._totalRows;
-        }
-
+        this.calculate(result.data, result.totalRows);
         this.afterConnectEmitter.emit(new NgTableAfterConnectEvent(this, result));
       }
     });
+  }
+
+  protected calculate(rows: any[], totalRows: number) {
+    this._rows = rows;
+    this._totalRows = totalRows;
+    this._totalPages = Math.ceil(this._totalRows / this._dataSource.range);
+
+    if (this._page > this._totalPages) {
+      this._page = 1;
+    }
+
+    this._from = ((this._page - 1) * this._dataSource.range) + 1;
+    this._to = this._from + this._dataSource.range - 1;
+
+    if (this._to > this._totalRows) {
+      this._to = this._totalRows;
+    }
   }
 
   protected requestData(): void {
@@ -147,6 +150,34 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
 
       this._dataSource.getData(this._dataSource.params);
     }
+  }
+
+  removeRow(row: any): NgTable {
+    let index: number = this._rows.indexOf(row);
+    if (index > -1) {
+      this._rows.splice(index, 1);
+    }
+
+    this.calculate(this._rows, this.totalRows - 1);
+
+    return this;
+  }
+
+  updateRow(row: any): NgTable {
+    let index: number = this._rows.indexOf(row);
+    if (index > -1) {
+      this._rows.splice(index, 1, row);
+    }
+
+    return this;
+  }
+
+  addRow(row: any): NgTable {
+    this._rows.push(row);
+
+    this.calculate(this._rows, this.totalRows + 1);
+
+    return this;
   }
 
   get rows(): Array<any> {
