@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgTable } from './components/table.component';
-import { NgTableHeaderRow } from './components/header-row.component';
-import { NgTableHeaderCell } from './components/header-cell.component';
-import { NgTableRow } from './components/row.component';
-import { NgTableCell } from './components/cell.component';
-import { NgTablePaginator } from './components/paginator.component';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
 import 'hammerjs';
+import {NgTableCell} from './components/cell.component';
+import {NgTableHeaderCell} from './components/header-cell.component';
+import {NgTableHeaderRow} from './components/header-row.component';
+import {NgTablePaginator} from './components/paginator.component';
+import {NgTableRow} from './components/row.component';
+import {NgTable} from './components/table.component';
+
 
 export { NgTableInitEvent, NgTableDestroyEvent, NgTableBeforeConnectEvent, NgTableAfterConnectEvent, NgTableRangeEvent } from './ngtable.events';
 export { NgTableSource } from './ngtable.source';
@@ -40,7 +40,6 @@ export class NgTableRoutingModule { }
     CommonModule,
     FormsModule,
     FlexLayoutModule,
-    MaterialModule,
     NgTableRoutingModule
   ],
   declarations: [

@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {MaterialModule} from '@angular/material';
+import {BrowserModule} from '@angular/platform-browser';
 import 'hammerjs';
 
-import { NgTableModule } from '../ngtable.wrapper';
+import {NgTableModule} from '../ngtable.wrapper';
 
-import { AppComponent } from './components/app.component';
-import { SimpleSource } from './sources/simple.source';
-import { PaginationSource } from './sources/pagination.source';
-import { FilterSource, FilterSourceParams } from './sources/filter.source';
-import { SortSource } from './sources/sort.source';
-import { HttpClient } from './services/httpClient.service';
+import {AppComponent} from './components/app.component';
+import {HttpClient} from './services/httpClient.service';
+import {FilterSource} from './sources/filter.source';
+import {PaginationSource} from './sources/pagination.source';
+import {SimpleSource} from './sources/simple.source';
+import {SortSource} from './sources/sort.source';
+
 
 @NgModule({
   declarations: [
