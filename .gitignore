@@ -8,3 +8,7 @@ node_modules
 .netbeans
 nbproject
 .node_history
+
+npm-debug\.log
+
+package-lock\.json
