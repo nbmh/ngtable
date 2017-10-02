@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {MaterialModule} from '@angular/material';
+import {MdButtonModule, MdCardModule, MdInputModule, MdSelectModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import 'hammerjs';
 
@@ -27,7 +27,10 @@ import {SortSource} from './sources/sort.source';
     FormsModule,
     FlexLayoutModule,
     HttpModule,
-    MaterialModule,
+    MdSelectModule,
+    MdInputModule,
+    MdButtonModule,
+    MdCardModule,
     NgTableModule
   ],
   providers: [

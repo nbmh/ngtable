@@ -12,6 +12,7 @@ import {NgTableHeaderRow} from './components/header-row.component';
 import {NgTablePaginator} from './components/paginator.component';
 import {NgTableRow} from './components/row.component';
 import {NgTable} from './components/table.component';
+import {MdButtonModule, MdSelectModule} from '@angular/material';
 
 
 export { NgTableInitEvent, NgTableDestroyEvent, NgTableBeforeConnectEvent, NgTableAfterConnectEvent, NgTableRangeEvent } from './ngtable.events';
@@ -40,7 +41,9 @@ export class NgTableRoutingModule { }
     CommonModule,
     FormsModule,
     FlexLayoutModule,
-    NgTableRoutingModule
+    NgTableRoutingModule,
+    MdSelectModule,
+    MdButtonModule
   ],
   declarations: [
     NgTable,
