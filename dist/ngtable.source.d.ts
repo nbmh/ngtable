@@ -2,11 +2,11 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { NgTableSourceResult } from './ngtable.result';
 import { INgTableSourceParams } from './ngtable.params';
 export declare abstract class NgTableSource {
-    private _range;
-    private _rangeOptions;
-    private _params;
+    protected _range: number;
+    protected _rangeOptions: Array<number>;
+    protected _params: INgTableSourceParams;
     private _loading;
-    private _dataChange;
+    protected readonly _dataChange: BehaviorSubject<NgTableSourceResult>;
     constructor();
     readonly loading: boolean;
     protected abstract source(params: INgTableSourceParams): void;

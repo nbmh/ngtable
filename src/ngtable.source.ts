@@ -4,11 +4,11 @@ import { INgTableSourceParams } from './ngtable.params';
 
 export abstract class NgTableSource {
 
-  private _range: number = null;
-  private _rangeOptions: Array<number> = [5, 10, 20, 50];
-  private _params: INgTableSourceParams = null;
+  protected _range: number = null;
+  protected _rangeOptions: Array<number> = [5, 10, 20, 50];
+  protected _params: INgTableSourceParams = null;
   private _loading: boolean = false;
-  private _dataChange: BehaviorSubject<NgTableSourceResult> = new BehaviorSubject<NgTableSourceResult>(null);
+  protected readonly _dataChange: BehaviorSubject<NgTableSourceResult> = new BehaviorSubject<NgTableSourceResult>(null);
 
   constructor() {
 
