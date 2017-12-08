@@ -5,7 +5,8 @@ import {
   NgTableBeforeConnectEvent,
   NgTableDestroyEvent,
   NgTableInitEvent,
-  NgTableRangeEvent
+  NgTableRangeEvent,
+  NgTableSourceUpdateEvent
 } from '../ngtable.events';
 import {NgTableSourceResult} from '../ngtable.result';
 import {NgTableSource} from '../ngtable.source';
@@ -81,6 +82,7 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
   @Output('init') initEmitter: EventEmitter<NgTableInitEvent> = new EventEmitter<NgTableInitEvent>();
   @Output('destroy') destroyEmitter: EventEmitter<NgTableDestroyEvent> = new EventEmitter<NgTableDestroyEvent>();
   @Output('beforeConnect') beforeConnectEmitter: EventEmitter<NgTableBeforeConnectEvent> = new EventEmitter<NgTableBeforeConnectEvent>();
+  @Output('sourceUpdate') sourceUpdateEmitter: EventEmitter<NgTableSourceUpdateEvent> = new EventEmitter<NgTableSourceUpdateEvent>();
   @Output('afterConnect') afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent> = new EventEmitter<NgTableAfterConnectEvent>();
   @Output('rangeChange') rangeChangeEmitter: EventEmitter<NgTableRangeEvent> = new EventEmitter<NgTableRangeEvent>();
 
@@ -122,12 +124,16 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
       this._dataSourceSubscriber.unsubscribe();
     }
 
+    this._dataSource.sourceUpdate.subscribe((e: NgTableSourceUpdateEvent) => {
+      this.sourceUpdateEmitter.emit(e);
+    });
+
     this._dataSourceSubscriber = this._dataSource.connection.subscribe((result: NgTableSourceResult) => {
       if (result) {
         this.calculate(result.data, result.totalRows);
         let event: NgTableAfterConnectEvent = new NgTableAfterConnectEvent(this, result);
         this.afterConnectEmitter.emit(event);
-        this._dataSource.afterConnectEmitter.emit(event);
+        this._dataSource.afterConnect.emit(event);
       }
     });
   }
@@ -156,7 +162,7 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
       let event: NgTableBeforeConnectEvent = new NgTableBeforeConnectEvent(this, this._dataSource.params);
 
       this.beforeConnectEmitter.emit(event);
-      this._dataSource.beforeConnectEmitter.emit(event);
+      this._dataSource.beforeConnect.emit(event);
 
       this._dataSource.getData(this._dataSource.params);
     }

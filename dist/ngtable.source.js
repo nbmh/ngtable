@@ -7,10 +7,10 @@ var NgTableSource = (function () {
         this._rangeOptions = [5, 10, 20, 50];
         this._params = null;
         this._loading = false;
-        this._dataChange = new BehaviorSubject(null);
-        this.dataChangeEmitter = new EventEmitter();
-        this.beforeConnectEmitter = new EventEmitter();
-        this.afterConnectEmitter = new EventEmitter();
+        this._sourceUpdate = new BehaviorSubject(null);
+        this.sourceUpdate = new EventEmitter();
+        this.beforeConnect = new EventEmitter();
+        this.afterConnect = new EventEmitter();
     }
     Object.defineProperty(NgTableSource.prototype, "loading", {
         get: function () {
@@ -25,12 +25,12 @@ var NgTableSource = (function () {
     };
     NgTableSource.prototype.updateData = function (result) {
         this._loading = false;
-        this._dataChange.next(result);
-        this.dataChangeEmitter.emit(new NgTableSourceUpdateEvent(this, result));
+        this._sourceUpdate.next(result);
+        this.sourceUpdate.emit(new NgTableSourceUpdateEvent(this, result));
     };
     Object.defineProperty(NgTableSource.prototype, "connection", {
         get: function () {
-            return this._dataChange;
+            return this._sourceUpdate;
         },
         enumerable: true,
         configurable: true

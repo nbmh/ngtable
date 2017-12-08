@@ -8,10 +8,10 @@ export declare abstract class NgTableSource {
     protected _rangeOptions: Array<number>;
     protected _params: INgTableSourceParams;
     private _loading;
-    protected readonly _dataChange: BehaviorSubject<NgTableSourceResult>;
-    readonly dataChangeEmitter: EventEmitter<NgTableSourceUpdateEvent>;
-    readonly beforeConnectEmitter: EventEmitter<NgTableBeforeConnectEvent>;
-    readonly afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent>;
+    protected readonly _sourceUpdate: BehaviorSubject<NgTableSourceResult>;
+    readonly sourceUpdate: EventEmitter<NgTableSourceUpdateEvent>;
+    readonly beforeConnect: EventEmitter<NgTableBeforeConnectEvent>;
+    readonly afterConnect: EventEmitter<NgTableAfterConnectEvent>;
     constructor();
     readonly loading: boolean;
     protected abstract source(params: INgTableSourceParams): void;

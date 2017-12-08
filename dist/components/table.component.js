@@ -15,6 +15,7 @@ var NgTable = (function () {
         this.initEmitter = new EventEmitter();
         this.destroyEmitter = new EventEmitter();
         this.beforeConnectEmitter = new EventEmitter();
+        this.sourceUpdateEmitter = new EventEmitter();
         this.afterConnectEmitter = new EventEmitter();
         this.rangeChangeEmitter = new EventEmitter();
     }
@@ -44,12 +45,15 @@ var NgTable = (function () {
             if (this._dataSourceSubscriber) {
                 this._dataSourceSubscriber.unsubscribe();
             }
+            this._dataSource.sourceUpdate.subscribe(function (e) {
+                _this.sourceUpdateEmitter.emit(e);
+            });
             this._dataSourceSubscriber = this._dataSource.connection.subscribe(function (result) {
                 if (result) {
                     _this.calculate(result.data, result.totalRows);
                     var event_1 = new NgTableAfterConnectEvent(_this, result);
                     _this.afterConnectEmitter.emit(event_1);
-                    _this._dataSource.afterConnectEmitter.emit(event_1);
+                    _this._dataSource.afterConnect.emit(event_1);
                 }
             });
         },
@@ -74,7 +78,7 @@ var NgTable = (function () {
             this._dataSource.params.offset = (this._page - 1) * this._dataSource.range;
             var event_2 = new NgTableBeforeConnectEvent(this, this._dataSource.params);
             this.beforeConnectEmitter.emit(event_2);
-            this._dataSource.beforeConnectEmitter.emit(event_2);
+            this._dataSource.beforeConnect.emit(event_2);
             this._dataSource.getData(this._dataSource.params);
         }
     };
@@ -274,6 +278,7 @@ NgTable.propDecorators = {
     'initEmitter': [{ type: Output, args: ['init',] },],
     'destroyEmitter': [{ type: Output, args: ['destroy',] },],
     'beforeConnectEmitter': [{ type: Output, args: ['beforeConnect',] },],
+    'sourceUpdateEmitter': [{ type: Output, args: ['sourceUpdate',] },],
     'afterConnectEmitter': [{ type: Output, args: ['afterConnect',] },],
     'rangeChangeEmitter': [{ type: Output, args: ['rangeChange',] },],
     'dataSource': [{ type: Input },],

@@ -11,10 +11,10 @@ export abstract class NgTableSource {
   protected _rangeOptions: Array<number> = [5, 10, 20, 50];
   protected _params: INgTableSourceParams = null;
   private _loading: boolean = false;
-  protected readonly _dataChange: BehaviorSubject<NgTableSourceResult> = new BehaviorSubject<NgTableSourceResult>(null);
-  public readonly dataChangeEmitter: EventEmitter<NgTableSourceUpdateEvent> = new EventEmitter<NgTableSourceUpdateEvent>();
-  public readonly beforeConnectEmitter: EventEmitter<NgTableBeforeConnectEvent> = new EventEmitter<NgTableBeforeConnectEvent>();
-  public readonly afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent> = new EventEmitter<NgTableAfterConnectEvent>();
+  protected readonly _sourceUpdate: BehaviorSubject<NgTableSourceResult> = new BehaviorSubject<NgTableSourceResult>(null);
+  public readonly sourceUpdate: EventEmitter<NgTableSourceUpdateEvent> = new EventEmitter<NgTableSourceUpdateEvent>();
+  public readonly beforeConnect: EventEmitter<NgTableBeforeConnectEvent> = new EventEmitter<NgTableBeforeConnectEvent>();
+  public readonly afterConnect: EventEmitter<NgTableAfterConnectEvent> = new EventEmitter<NgTableAfterConnectEvent>();
 
   constructor() {
 
@@ -33,12 +33,12 @@ export abstract class NgTableSource {
 
   protected updateData(result: NgTableSourceResult) {
     this._loading = false;
-    this._dataChange.next(result);
-    this.dataChangeEmitter.emit(new NgTableSourceUpdateEvent(this, result));
+    this._sourceUpdate.next(result);
+    this.sourceUpdate.emit(new NgTableSourceUpdateEvent(this, result));
   }
 
   get connection(): BehaviorSubject<NgTableSourceResult> {
-    return this._dataChange;
+    return this._sourceUpdate;
   }
 
   get params(): INgTableSourceParams {
