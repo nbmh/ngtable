@@ -1,15 +1,11 @@
-import { Injectable } from '@angular/core';
-import { NgTableSource } from './ngtable.source';
-import { INgTableSourceParams } from './ngtable.params';
+import {INgTableSourceParams} from './ngtable.params';
+import {NgTableSource} from './ngtable.source';
+
 
 export class NgTableSourceResult {
 
-  private _data: Array<{}>;
-  private _totalRows: number = 0;
+  constructor(protected _data: Array<any>, protected _totalRows: number = 0, protected _additionalData?: any) {
 
-  constructor(data: Array<any>, totalRows: number) {
-    this._data = data;
-    this._totalRows = totalRows;
   }
 
   get data(): Array<any> {
@@ -20,11 +16,15 @@ export class NgTableSourceResult {
     return this._totalRows;
   }
 
-  static create(rows: Array<any>, totalRows: number) {
-    return new NgTableSourceResult(rows, totalRows);
+  get additionalData(): number {
+    return this._additionalData;
   }
 
-  static singlePage(source: NgTableSource, rows: Array<any>): NgTableSourceResult {
+  static create(rows: Array<any>, totalRows: number, additionalData?: any) {
+    return new NgTableSourceResult(rows, totalRows, additionalData);
+  }
+
+  static singlePage(source: NgTableSource, rows: Array<any>, additionalData?: any): NgTableSourceResult {
     let list: Array<any> = [];
     let index: number = 0;
     let params: INgTableSourceParams = source.params;
@@ -36,7 +36,7 @@ export class NgTableSourceResult {
       index++;
     });
 
-    return new NgTableSourceResult(list, rows.length);
+    return new NgTableSourceResult(list, rows.length, additionalData);
   }
 
 }

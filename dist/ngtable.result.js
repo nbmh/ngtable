@@ -1,8 +1,9 @@
 var NgTableSourceResult = (function () {
-    function NgTableSourceResult(data, totalRows) {
-        this._totalRows = 0;
-        this._data = data;
-        this._totalRows = totalRows;
+    function NgTableSourceResult(_data, _totalRows, _additionalData) {
+        if (_totalRows === void 0) { _totalRows = 0; }
+        this._data = _data;
+        this._totalRows = _totalRows;
+        this._additionalData = _additionalData;
     }
     Object.defineProperty(NgTableSourceResult.prototype, "data", {
         get: function () {
@@ -18,10 +19,17 @@ var NgTableSourceResult = (function () {
         enumerable: true,
         configurable: true
     });
-    NgTableSourceResult.create = function (rows, totalRows) {
-        return new NgTableSourceResult(rows, totalRows);
+    Object.defineProperty(NgTableSourceResult.prototype, "additionalData", {
+        get: function () {
+            return this._additionalData;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    NgTableSourceResult.create = function (rows, totalRows, additionalData) {
+        return new NgTableSourceResult(rows, totalRows, additionalData);
     };
-    NgTableSourceResult.singlePage = function (source, rows) {
+    NgTableSourceResult.singlePage = function (source, rows, additionalData) {
         var list = [];
         var index = 0;
         var params = source.params;
@@ -31,7 +39,7 @@ var NgTableSourceResult = (function () {
             }
             index++;
         });
-        return new NgTableSourceResult(list, rows.length);
+        return new NgTableSourceResult(list, rows.length, additionalData);
     };
     return NgTableSourceResult;
 }());
