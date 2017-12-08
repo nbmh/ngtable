@@ -16,7 +16,7 @@ export class NgTableSourceResult {
     return this._totalRows;
   }
 
-  get additionalData(): number {
+  get additionalData(): any {
     return this._additionalData;
   }
 

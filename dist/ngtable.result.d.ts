@@ -6,7 +6,7 @@ export declare class NgTableSourceResult {
     constructor(_data: Array<any>, _totalRows?: number, _additionalData?: any);
     readonly data: Array<any>;
     readonly totalRows: number;
-    readonly additionalData: number;
+    readonly additionalData: any;
     static create(rows: Array<any>, totalRows: number, additionalData?: any): NgTableSourceResult;
     static singlePage(source: NgTableSource, rows: Array<any>, additionalData?: any): NgTableSourceResult;
 }
