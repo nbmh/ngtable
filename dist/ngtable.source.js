@@ -1,4 +1,6 @@
+import { EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgTableSourceUpdateEvent } from './ngtable.events';
 var NgTableSource = (function () {
     function NgTableSource() {
         this._range = null;
@@ -6,6 +8,9 @@ var NgTableSource = (function () {
         this._params = null;
         this._loading = false;
         this._dataChange = new BehaviorSubject(null);
+        this.dataChangeEmitter = new EventEmitter();
+        this.beforeConnectEmitter = new EventEmitter();
+        this.afterConnectEmitter = new EventEmitter();
     }
     Object.defineProperty(NgTableSource.prototype, "loading", {
         get: function () {
@@ -21,6 +26,7 @@ var NgTableSource = (function () {
     NgTableSource.prototype.updateData = function (result) {
         this._loading = false;
         this._dataChange.next(result);
+        this.dataChangeEmitter.emit(new NgTableSourceUpdateEvent(this, result));
     };
     Object.defineProperty(NgTableSource.prototype, "connection", {
         get: function () {

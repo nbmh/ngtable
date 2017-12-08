@@ -1,7 +1,7 @@
-import { OnInit, AfterViewInit, OnDestroy, EventEmitter } from '@angular/core';
+import { AfterViewInit, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgTableAfterConnectEvent, NgTableBeforeConnectEvent, NgTableDestroyEvent, NgTableInitEvent, NgTableRangeEvent } from '../ngtable.events';
 import { NgTableSource } from '../ngtable.source';
-import { NgTableInitEvent, NgTableRangeEvent, NgTableBeforeConnectEvent, NgTableAfterConnectEvent, NgTableDestroyEvent } from '../ngtable.events';
 export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
     private activeRoute;
     private _dataSourceSubscriber;

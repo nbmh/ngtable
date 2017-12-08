@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgTableInitEvent, NgTableRangeEvent, NgTableBeforeConnectEvent, NgTableAfterConnectEvent, NgTableDestroyEvent } from '../ngtable.events';
+import { NgTableAfterConnectEvent, NgTableBeforeConnectEvent, NgTableDestroyEvent, NgTableInitEvent, NgTableRangeEvent } from '../ngtable.events';
 var NgTable = (function () {
     function NgTable(activeRoute) {
         this.activeRoute = activeRoute;
@@ -47,7 +47,9 @@ var NgTable = (function () {
             this._dataSourceSubscriber = this._dataSource.connection.subscribe(function (result) {
                 if (result) {
                     _this.calculate(result.data, result.totalRows);
-                    _this.afterConnectEmitter.emit(new NgTableAfterConnectEvent(_this, result));
+                    var event_1 = new NgTableAfterConnectEvent(_this, result);
+                    _this.afterConnectEmitter.emit(event_1);
+                    _this._dataSource.afterConnectEmitter.emit(event_1);
                 }
             });
         },
@@ -70,7 +72,9 @@ var NgTable = (function () {
     NgTable.prototype.requestData = function () {
         if (!this._dataSource.loading) {
             this._dataSource.params.offset = (this._page - 1) * this._dataSource.range;
-            this.beforeConnectEmitter.emit(new NgTableBeforeConnectEvent(this, this._dataSource.params));
+            var event_2 = new NgTableBeforeConnectEvent(this, this._dataSource.params);
+            this.beforeConnectEmitter.emit(event_2);
+            this._dataSource.beforeConnectEmitter.emit(event_2);
             this._dataSource.getData(this._dataSource.params);
         }
     };

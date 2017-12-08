@@ -1,6 +1,7 @@
 import { NgTable } from './components/table.component';
 import { INgTableSourceParams } from './ngtable.params';
 import { NgTableSourceResult } from './ngtable.result';
+import { NgTableSource } from './ngtable.source';
 export declare class NgTableInitEvent {
     private _table;
     constructor(table: NgTable);
@@ -33,4 +34,11 @@ export declare class NgTableRangeEvent {
     readonly table: NgTable;
     readonly range: number;
     readonly options: number[];
+}
+export declare class NgTableSourceUpdateEvent {
+    private _source;
+    private _result;
+    constructor(source: NgTableSource, result: NgTableSourceResult);
+    readonly source: NgTableSource;
+    readonly result: NgTableSourceResult;
 }

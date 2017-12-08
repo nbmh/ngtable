@@ -1,7 +1,8 @@
-import { Output } from '@angular/core';
-import { NgTable } from './components/table.component';
-import { INgTableSourceParams } from './ngtable.params';
-import { NgTableSourceResult } from './ngtable.result';
+import {NgTable} from './components/table.component';
+import {INgTableSourceParams} from './ngtable.params';
+import {NgTableSourceResult} from './ngtable.result';
+import {NgTableSource} from './ngtable.source';
+
 
 export class NgTableInitEvent {
 
@@ -93,6 +94,26 @@ export class NgTableRangeEvent {
 
   get options(): number[] {
     return this._options;
+  }
+
+}
+
+export class NgTableSourceUpdateEvent {
+
+  private _source: NgTableSource;
+  private _result: NgTableSourceResult;
+
+  constructor(source: NgTableSource, result: NgTableSourceResult) {
+    this._source = source;
+    this._result = result;
+  }
+
+  get source(): NgTableSource {
+    return this._source;
+  }
+
+  get result(): NgTableSourceResult {
+    return this._result;
   }
 
 }

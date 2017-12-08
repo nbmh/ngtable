@@ -100,4 +100,26 @@ var NgTableRangeEvent = (function () {
     return NgTableRangeEvent;
 }());
 export { NgTableRangeEvent };
+var NgTableSourceUpdateEvent = (function () {
+    function NgTableSourceUpdateEvent(source, result) {
+        this._source = source;
+        this._result = result;
+    }
+    Object.defineProperty(NgTableSourceUpdateEvent.prototype, "source", {
+        get: function () {
+            return this._source;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NgTableSourceUpdateEvent.prototype, "result", {
+        get: function () {
+            return this._result;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return NgTableSourceUpdateEvent;
+}());
+export { NgTableSourceUpdateEvent };
 //# sourceMappingURL=ngtable.events.js.map

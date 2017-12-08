@@ -1,6 +1,9 @@
-import { BehaviorSubject } from 'rxjs/Rx';
-import { NgTableSourceResult } from './ngtable.result';
-import { INgTableSourceParams } from './ngtable.params';
+import {EventEmitter} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/Rx';
+import {NgTableAfterConnectEvent, NgTableBeforeConnectEvent, NgTableSourceUpdateEvent} from './ngtable.events';
+import {INgTableSourceParams} from './ngtable.params';
+import {NgTableSourceResult} from './ngtable.result';
+
 
 export abstract class NgTableSource {
 
@@ -9,6 +12,9 @@ export abstract class NgTableSource {
   protected _params: INgTableSourceParams = null;
   private _loading: boolean = false;
   protected readonly _dataChange: BehaviorSubject<NgTableSourceResult> = new BehaviorSubject<NgTableSourceResult>(null);
+  public readonly dataChangeEmitter: EventEmitter<NgTableSourceUpdateEvent> = new EventEmitter<NgTableSourceUpdateEvent>();
+  public readonly beforeConnectEmitter: EventEmitter<NgTableBeforeConnectEvent> = new EventEmitter<NgTableBeforeConnectEvent>();
+  public readonly afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent> = new EventEmitter<NgTableAfterConnectEvent>();
 
   constructor() {
 
@@ -28,6 +34,7 @@ export abstract class NgTableSource {
   protected updateData(result: NgTableSourceResult) {
     this._loading = false;
     this._dataChange.next(result);
+    this.dataChangeEmitter.emit(new NgTableSourceUpdateEvent(this, result));
   }
 
   get connection(): BehaviorSubject<NgTableSourceResult> {
