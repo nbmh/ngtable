@@ -20,13 +20,13 @@ export abstract class NgTableSource {
 
   }
 
-  get loading(): boolean {
+  public get loading(): boolean {
     return this._loading;
   }
 
   protected abstract source(params: INgTableSourceParams): void;
 
-  getData(params: INgTableSourceParams): void {
+  public getData(params: INgTableSourceParams): void {
     this._loading = true;
     this.source(params);
   }
@@ -37,15 +37,15 @@ export abstract class NgTableSource {
     this.sourceUpdate.emit(new NgTableSourceUpdateEvent(this, result));
   }
 
-  get connection(): BehaviorSubject<NgTableSourceResult> {
+  public get connection(): BehaviorSubject<NgTableSourceResult> {
     return this._sourceUpdate;
   }
 
-  get params(): INgTableSourceParams {
+  public get params(): INgTableSourceParams {
     return this._params;
   }
 
-  set params(value: INgTableSourceParams) {
+  public set params(value: INgTableSourceParams) {
     let wasSet: any = this._params != null;
 
     this._params = value;
@@ -55,11 +55,11 @@ export abstract class NgTableSource {
     }
   }
 
-  get range(): number {
+  public get range(): number {
     return this._range || 10;
   }
 
-  set range(value: number) {
+  public set range(value: number) {
     let wasSet: any = this._range != null;
 
     this._range = value;
@@ -69,11 +69,11 @@ export abstract class NgTableSource {
     }
   }
 
-  get rangeOptions(): Array<number> {
+  public get rangeOptions(): Array<number> {
     return this._rangeOptions;
   }
 
-  set rangeOptions(options: Array<number>) {
+  public set rangeOptions(options: Array<number>) {
     this._rangeOptions = options;
   }
 
