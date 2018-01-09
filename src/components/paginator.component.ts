@@ -5,7 +5,7 @@ import {NgTable} from './table.component';
 @Component({
   selector: 'ng-table-paginator',
   template: `
-<div class="ng-table-paginator-page-size" *ngIf="rangeVisible && !table.empty">
+1<div class="ng-table-paginator-page-size" *ngIf="rangeVisible && !table.empty">
   <div class="ng-table-paginator-page-size-label">
     {{label.items_per_page}}
   </div>

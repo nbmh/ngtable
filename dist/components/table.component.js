@@ -10,6 +10,7 @@ var NgTable = (function () {
         this._totalPages = 0;
         this._from = 0;
         this._to = 0;
+        this._moreRange = 10;
         this._initialized = false;
         this._queryPage = 'page';
         this.initEmitter = new EventEmitter();
@@ -179,6 +180,16 @@ var NgTable = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(NgTable.prototype, "moreRange", {
+        get: function () {
+            return this._moreRange;
+        },
+        set: function (value) {
+            this._moreRange = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(NgTable.prototype, "rangeOptions", {
         get: function () {
             return this._dataSource.rangeOptions;
@@ -212,6 +223,14 @@ var NgTable = (function () {
     });
     NgTable.prototype.refresh = function () {
         this.page = this._page;
+        return this;
+    };
+    NgTable.prototype.more = function () {
+        if (!this._dataSource.loading) {
+            this._page = 1;
+            this.range = this.range + this._moreRange;
+            this.requestData();
+        }
         return this;
     };
     NgTable.prototype.prev = function () {
@@ -285,6 +304,7 @@ NgTable.propDecorators = {
     'queryPage': [{ type: Input },],
     'page': [{ type: Input },],
     'range': [{ type: Input },],
+    'moreRange': [{ type: Input },],
     'rangeOptions': [{ type: Input },],
 };
 //# sourceMappingURL=table.component.js.map

@@ -11,6 +11,7 @@ export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
     private _totalPages;
     private _from;
     private _to;
+    private _moreRange;
     private _dataSource;
     private _initialized;
     private _queryPage;
@@ -39,11 +40,13 @@ export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
     readonly from: number;
     readonly to: number;
     range: number;
+    moreRange: number;
     rangeOptions: Array<number>;
     readonly initialized: boolean;
     readonly loading: boolean;
     readonly empty: boolean;
     refresh(): NgTable;
+    more(): NgTable;
     prev(): NgTable;
     next(): NgTable;
     readonly hasPrev: boolean;

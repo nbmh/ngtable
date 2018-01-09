@@ -19,7 +19,7 @@
 <br />
 <md-card>
   <md-card-title>Table with pagination</md-card-title>
-  <ng-table #ngTablePagination [dataSource]="sourcePagination" range="4" [rangeOptions]="[2, 4, 6, 10, 20]">
+  <ng-table #ngTablePagination [dataSource]="sourcePagination" range="4" [rangeOptions]="[2, 4, 6, 10, 20]" [moreRange]="2">
     <ng-table-header-row>
       <ng-table-header-cell>Firstname</ng-table-header-cell>
       <ng-table-header-cell>Lastname</ng-table-header-cell>
@@ -34,7 +34,8 @@
       <ng-table-cell>No records</ng-table-cell>
     </ng-table-row>
   </ng-table>
-  <ng-table-paginator [ngTable]="ngTablePagination"></ng-table-paginator>
+  <ng-table-paginator fxHide.xs fxHide.sm [ngTable]="ngTablePagination"></ng-table-paginator>
+  <ng-table-more fxHide.md fxHide.lg [ngTable]="ngTablePagination"></ng-table-more>
 
   <button md-raised-button type="button" (click)="ngTablePagination.prev()" [disabled]="!ngTablePagination.hasPrev">Previous page</button>
   <button md-raised-button type="button" (click)="goToPage(2)" [disabled]="ngTablePagination.page==2">Page #2</button>
@@ -49,7 +50,7 @@
     </md-input-container>
     <button md-icon-button (click)="resetFilter()" mdTooltip="Clear" mdTooltipPosition="before" [disabled]="!filterParams.query!=''"><md-icon class="material-icons">close</md-icon></button>
   </div>
-  <ng-table #ngTableFilter [dataSource]="sourceFilter" range="4" [rangeOptions]="[2, 4, 6, 10, 20]">
+  <ng-table #ngTableFilter [dataSource]="sourceFilter" range="4" [rangeOptions]="[2, 4, 6, 10, 20]" [moreRange]="2">
     <ng-table-header-row>
       <ng-table-header-cell>Firstname</ng-table-header-cell>
       <ng-table-header-cell>Lastname</ng-table-header-cell>
@@ -67,12 +68,13 @@
       <ng-table-cell>No matching records</ng-table-cell>
     </ng-table-row>
   </ng-table>
-  <ng-table-paginator [ngTable]="ngTableFilter"></ng-table-paginator>
+  <ng-table-paginator fxHide.xs fxHide.sm [ngTable]="ngTableFilter"></ng-table-paginator>
+  <ng-table-more fxHide.md fxHide.lg [ngTable]="ngTableFilter"></ng-table-more>
 </md-card>
 <br />
 <md-card>
   <md-card-title>Table with sorting</md-card-title>
-  <ng-table #ngTableSort [dataSource]="sourceSort" range="5">
+  <ng-table #ngTableSort [dataSource]="sourceSort" range="5" [moreRange]="2">
     <ng-table-header-row>
       <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('firstname')">
         <span>Firstname</span>
@@ -99,7 +101,8 @@
       <ng-table-cell>No records</ng-table-cell>
     </ng-table-row>
   </ng-table>
-  <ng-table-paginator [ngTable]="ngTableSort"></ng-table-paginator>
+  <ng-table-paginator fxHide.xs fxHide.sm [ngTable]="ngTableSort"></ng-table-paginator>
+  <ng-table-more fxHide.md fxHide.lg [ngTable]="ngTableSort"></ng-table-more>
 
   <button md-raised-button type="button" (click)="setSort('')" [disabled]="sourceSort.params.sort==''">Remove sorting</button>
 </md-card>

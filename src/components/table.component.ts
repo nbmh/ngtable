@@ -74,6 +74,7 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
   private _totalPages: number = 0;
   private _from: number = 0;
   private _to: number = 0;
+  private _moreRange: number = 10;
   private _dataSource: NgTableSource;
   private _initialized: boolean = false;
   private _queryPage: string = 'page';
@@ -258,6 +259,15 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  get moreRange(): number {
+    return this._moreRange;
+  }
+
+  @Input()
+  set moreRange(value: number) {
+    this._moreRange = value;
+  }
+
   get rangeOptions(): Array<number> {
     return this._dataSource.rangeOptions;
   }
@@ -281,6 +291,15 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
 
   refresh(): NgTable {
     this.page = this._page;
+    return this;
+  }
+
+  more(): NgTable {
+    if (!this._dataSource.loading) {
+      this._page = 1;
+      this.range = this.range + this._moreRange;
+      this.requestData();
+    }
     return this;
   }
 

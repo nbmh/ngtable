@@ -8,6 +8,7 @@ import 'hammerjs';
 import {NgTableCell} from './components/cell.component';
 import {NgTableHeaderCell} from './components/header-cell.component';
 import {NgTableHeaderRow} from './components/header-row.component';
+import {NgTableMore} from './components/more.component';
 import {NgTablePaginator} from './components/paginator.component';
 import {NgTableRow} from './components/row.component';
 import {NgTable} from './components/table.component';
@@ -53,7 +54,8 @@ export class NgTableRoutingModule {
     NgTableHeaderCell,
     NgTableRow,
     NgTableCell,
-    NgTablePaginator
+    NgTablePaginator,
+    NgTableMore
   ],
   providers: [],
   exports: [
@@ -62,7 +64,8 @@ export class NgTableRoutingModule {
     NgTableHeaderCell,
     NgTableRow,
     NgTableCell,
-    NgTablePaginator
+    NgTablePaginator,
+    NgTableMore
   ]
 })
 export class NgTableModule {
