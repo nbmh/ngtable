@@ -1,5 +1,4 @@
 import { NgTable } from './table.component';
-import { MdSelectChange } from '@angular/material';
 export declare class NgTablePaginator {
     table: NgTable;
     private _rangeVisible;
@@ -7,5 +6,5 @@ export declare class NgTablePaginator {
     label: Object;
     ngTable: NgTable;
     rangeVisible: boolean;
-    actionRange(e: MdSelectChange): void;
+    actionRange(e: any): void;
 }

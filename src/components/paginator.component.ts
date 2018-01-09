@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { NgTable } from './table.component';
-import { MdSelectChange } from '@angular/material';
+import {Component, Input} from '@angular/core';
+import {NgTable} from './table.component';
+
 
 @Component({
   selector: 'ng-table-paginator',
@@ -19,8 +19,8 @@ import { MdSelectChange } from '@angular/material';
   <span *ngIf="table.rows.length == 1">{{table.from}}</span>
   {{label.of_items}} {{table.totalRows}}
 </div>
-<button *ngIf="!table.empty" (click)="table.prev()" [disabled]="!table.hasPrev || table.loading" mdTooltip="Previous page" title="Previous">⇽</button>
-<button *ngIf="!table.empty" (click)="table.next()" [disabled]="!table.hasNext || table.loading" mdTooltip="Next page" title="Next">⇾</button>
+<button *ngIf="!table.empty" (click)="table.prev()" [disabled]="!table.hasPrev || table.loading" title="Previous page">⇽</button>
+<button *ngIf="!table.empty" (click)="table.next()" [disabled]="!table.hasNext || table.loading" title="Next page">⇾</button>
   `,
   styles: [`
 :host(.ng-table-paginator) {
@@ -90,7 +90,7 @@ export class NgTablePaginator {
     this._rangeVisible = status;
   }
 
-  actionRange(e: MdSelectChange):void  {
+  actionRange(e: any):void  {
     if (this.table) {
       this.table.range = +e.value;
     }
