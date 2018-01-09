@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +11,6 @@ import { NgTableHeaderRow } from './components/header-row.component';
 import { NgTablePaginator } from './components/paginator.component';
 import { NgTableRow } from './components/row.component';
 import { NgTable } from './components/table.component';
-import { MdButtonModule, MdSelectModule } from '@angular/material';
 export { NgTableInitEvent, NgTableDestroyEvent, NgTableBeforeConnectEvent, NgTableAfterConnectEvent, NgTableRangeEvent } from './ngtable.events';
 export { NgTableSource } from './ngtable.source';
 export { NgTableSourceResult } from './ngtable.result';
@@ -46,14 +44,11 @@ export { NgTableModule };
 NgTableModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
+                    CommonModule,
                     BrowserModule,
                     BrowserAnimationsModule,
-                    CommonModule,
-                    FormsModule,
-                    FlexLayoutModule,
                     NgTableRoutingModule,
-                    MdSelectModule,
-                    MdButtonModule
+                    FormsModule
                 ],
                 declarations: [
                     NgTable,

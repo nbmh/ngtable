@@ -9,11 +9,9 @@ import { MdSelectChange } from '@angular/material';
   <div class="ng-table-paginator-page-size-label">
     {{label.items_per_page}}
   </div>
-  <md-select class="ng-table-paginator-page-size-select" [(ngModel)]="table.range" (change)="actionRange($event)" [disabled]="table.loading">
-    <md-option *ngFor="let count of table.rangeOptions" [value]="count">
-      {{count}}
-    </md-option>
-  </md-select>
+  <select class="ng-table-paginator-page-size-select" [(ngModel)]="table.range" (change)="actionRange($event)" [disabled]="table.loading">
+    <option *ngFor="let count of table.rangeOptions" value="{{count}}">{{count}}</option>
+  </select>
 </div>
 <div class="ng-table-paginator-page-label" *ngIf="!table.empty">
   {{label.page}} {{table.page}} {{label.of_page}} {{table.totalPages}} |
@@ -21,8 +19,8 @@ import { MdSelectChange } from '@angular/material';
   <span *ngIf="table.rows.length == 1">{{table.from}}</span>
   {{label.of_items}} {{table.totalRows}}
 </div>
-<button md-icon-button *ngIf="!table.empty" (click)="table.prev()" [disabled]="!table.hasPrev || table.loading" mdTooltip="Previous page"><md-icon class="material-icons">navigate_before</md-icon></button>
-<button md-icon-button *ngIf="!table.empty" (click)="table.next()" [disabled]="!table.hasNext || table.loading" mdTooltip="Next page"><md-icon class="material-icons">navigate_next</md-icon></button>
+<button *ngIf="!table.empty" (click)="table.prev()" [disabled]="!table.hasPrev || table.loading" mdTooltip="Previous page" title="Previous">⇽</button>
+<button *ngIf="!table.empty" (click)="table.next()" [disabled]="!table.hasNext || table.loading" mdTooltip="Next page" title="Next">⇾</button>
   `,
   styles: [`
 :host(.ng-table-paginator) {
