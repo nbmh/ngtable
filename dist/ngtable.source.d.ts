@@ -16,6 +16,7 @@ export declare abstract class NgTableSource {
     readonly loading: boolean;
     protected abstract source(params: INgTableSourceParams): void;
     getData(params: INgTableSourceParams): void;
+    refresh(): void;
     protected updateData(result: NgTableSourceResult): void;
     readonly connection: BehaviorSubject<NgTableSourceResult>;
     params: INgTableSourceParams;

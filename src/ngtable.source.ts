@@ -31,6 +31,12 @@ export abstract class NgTableSource {
     this.source(params);
   }
 
+  public refresh() {
+    if (!this._loading) {
+      this.getData(this.params);
+    }
+  }
+
   protected updateData(result: NgTableSourceResult) {
     this._loading = false;
     this._sourceUpdate.next(result);

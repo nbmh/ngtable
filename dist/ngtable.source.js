@@ -23,6 +23,11 @@ var NgTableSource = (function () {
         this._loading = true;
         this.source(params);
     };
+    NgTableSource.prototype.refresh = function () {
+        if (!this._loading) {
+            this.getData(this.params);
+        }
+    };
     NgTableSource.prototype.updateData = function (result) {
         this._loading = false;
         this._sourceUpdate.next(result);
