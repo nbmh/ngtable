@@ -43,8 +43,6 @@ export class NgTableRoutingModule {
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     NgTableRoutingModule,
     FormsModule
   ],

@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MdButtonModule, MdCardModule, MdInputModule, MdSelectModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import {NgTableModule} from '../ngtable.wrapper';
@@ -22,8 +23,9 @@ import {SortSource} from './sources/sort.source';
     AppComponent
   ],
   imports: [
-    BrowserModule,
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     FlexLayoutModule,
     HttpModule,
