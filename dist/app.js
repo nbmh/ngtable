@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
 import { NgTableCell } from './components/cell.component';
@@ -46,8 +44,6 @@ NgTableModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
-                    BrowserModule,
-                    BrowserAnimationsModule,
                     NgTableRoutingModule,
                     FormsModule
                 ],
