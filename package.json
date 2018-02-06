@@ -1,6 +1,6 @@
 {
   "name": "ngtable",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "angular2 table/pagination support",
   "main": "bundles/core.umd.js",
   "module": "dist/app.js",
