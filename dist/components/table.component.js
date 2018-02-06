@@ -39,7 +39,9 @@ var NgTable = (function () {
             this._dataSourceSubscriber.unsubscribe();
             this._dataSourceSubscriber = null;
         }
-        this._querySubscriber.unsubscribe();
+        /*if (this._querySubscriber) {
+          this._querySubscriber.unsubscribe();
+        }*/
         this.destroyEmitter.emit(new NgTableDestroyEvent(this));
     };
     Object.defineProperty(NgTable.prototype, "dataSource", {

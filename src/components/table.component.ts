@@ -130,7 +130,9 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
       this._dataSourceSubscriber = null;
     }
 
-    this._querySubscriber.unsubscribe();
+    /*if (this._querySubscriber) {
+      this._querySubscriber.unsubscribe();
+    }*/
 
     this.destroyEmitter.emit(new NgTableDestroyEvent(this));
   }
