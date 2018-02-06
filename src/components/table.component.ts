@@ -34,13 +34,7 @@ import {NgTableSource} from '../ngtable.source';
   border-bottom-color: rgba(0, 0, 0, .12);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  padding: 12px;
-}
-
-:host(.ng-table) /deep/ .ng-table-header-cell::before,
-:host(.ng-table) /deep/ .ng-table-cell::before {
-  content: "";
-  min-height: 48px;
+  padding: 10px 12px;
 }
 
 :host(.ng-table) /deep/ .ng-table-header-cell {
