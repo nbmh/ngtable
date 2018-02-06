@@ -34,7 +34,13 @@ import {NgTableSource} from '../ngtable.source';
   border-bottom-color: rgba(0, 0, 0, .12);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  padding: 10px 12px;
+  padding: 12px;
+}
+
+:host(.ng-table.ng-table-condensed) /deep/ .ng-table-header-cell,
+:host(.ng-table.ng-table-condensed) /deep/ .ng-table-cell {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 :host(.ng-table) /deep/ .ng-table-header-cell {
@@ -43,6 +49,10 @@ import {NgTableSource} from '../ngtable.source';
   color: rgba(0, 0, 0, .54);
   display: table-cell;
   white-space: nowrap;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 :host(.ng-table) /deep/ .ng-table-cell {

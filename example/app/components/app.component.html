@@ -43,14 +43,14 @@
 </md-card>
 <br />
 <md-card>
-  <md-card-title>Table with search filter</md-card-title>
+  <md-card-title>Table with search filter (also condensed rows)</md-card-title>
   <div fxLayout="row" fxLayoutAlign="start center">
     <md-input-container fxFlex>
       <input mdInput name="filter" placeholder="Search" #filter [(ngModel)]="filterParams.query" />
     </md-input-container>
     <button md-icon-button (click)="resetFilter()" mdTooltip="Clear" mdTooltipPosition="before" [disabled]="!filterParams.query!=''"><md-icon class="material-icons">close</md-icon></button>
   </div>
-  <ng-table #ngTableFilter [dataSource]="sourceFilter" range="4" [rangeOptions]="[2, 4, 6, 10, 20]" [moreRange]="2">
+  <ng-table class="ng-table-condensed" #ngTableFilter [dataSource]="sourceFilter" range="4" [rangeOptions]="[2, 4, 6, 10, 20]" [moreRange]="2">
     <ng-table-header-row>
       <ng-table-header-cell>Firstname</ng-table-header-cell>
       <ng-table-header-cell>Lastname</ng-table-header-cell>
@@ -74,19 +74,19 @@
 <br />
 <md-card>
   <md-card-title>Table with sorting</md-card-title>
-  <ng-table #ngTableSort [dataSource]="sourceSort" range="5" [moreRange]="2">
+  <ng-table class="ng-table-sortable" #ngTableSort [dataSource]="sourceSort" range="5" [moreRange]="2">
     <ng-table-header-row>
-      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('firstname')">
+      <ng-table-header-cell (click)="setSort('firstname')">
         <span>Firstname</span>
         <md-icon class="material-icons" *ngIf="checkSort('firstname', 'asc')">arrow_downward</md-icon>
         <md-icon class="material-icons" *ngIf="checkSort('firstname', 'desc')">arrow_upward</md-icon>
       </ng-table-header-cell>
-      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('lastname')">
+      <ng-table-header-cell (click)="setSort('lastname')">
         <span>Lastname</span>
         <md-icon class="material-icons" *ngIf="checkSort('lastname', 'asc')">arrow_downward</md-icon>
         <md-icon class="material-icons" *ngIf="checkSort('lastname', 'desc')">arrow_upward</md-icon>
       </ng-table-header-cell>
-      <ng-table-header-cell fxLayout="row" fxLayoutAlign="space-between center" (click)="setSort('email')">
+      <ng-table-header-cell (click)="setSort('email')">
         <span>Email</span>
         <md-icon class="material-icons" *ngIf="checkSort('email', 'asc')">arrow_downward</md-icon>
         <md-icon class="material-icons" *ngIf="checkSort('email', 'desc')">arrow_upward</md-icon>
