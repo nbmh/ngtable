@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgTableAfterConnectEvent, NgTableBeforeConnectEvent, NgTableDestroyEvent, NgTableInitEvent, NgTableRangeEvent } from '../ngtable.events';
 var NgTable = (function () {
-    function NgTable(activeRoute) {
-        this.activeRoute = activeRoute;
+    function NgTable() {
         this._rows = [];
         this._totalRows = 0;
         this._page = 1;
@@ -23,13 +21,18 @@ var NgTable = (function () {
     NgTable.prototype.ngOnInit = function () {
     };
     NgTable.prototype.ngAfterViewInit = function () {
-        var _this = this;
         this.initEmitter.emit(new NgTableInitEvent(this));
-        this._querySubscriber = this.activeRoute.queryParams.debounceTime(10).subscribe(function (params) {
-            _this._initialized = true;
-            _this._page = params[_this._queryPage] ? +params[_this._queryPage] : 1;
-            _this.requestData();
-        });
+        // TODO: Change to parse params from window.location. RouterModule screws with lazy loading
+        /*this._querySubscriber = this.activeRoute.queryParams.debounceTime(10).subscribe(params => {
+          this._initialized = true;
+          this._page = params[this._queryPage] ? +params[this._queryPage] : 1;
+    
+          this.requestData();
+        });*/
+        this._initialized = true;
+        this._page = 1;
+        this.requestData();
+        //=================
     };
     NgTable.prototype.ngOnDestroy = function () {
         if (this._dataSourceSubscriber) {
@@ -285,14 +288,12 @@ NgTable.decorators = [
     { type: Component, args: [{
                 selector: 'ng-table',
                 template: "\n  <ng-content></ng-content>\n  ",
-                styles: ["\n:host(.ng-table) {\n  background: #fff;\n  overflow: auto;\n  display: flex;\n  flex-direction: column;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-row,\n:host(.ng-table) /deep/ .ng-table-row {\n  border-bottom-color: rgba(0, 0, 0, .12);\n  display: flex;\n  border-bottom-width: 1px;\n  border-bottom-style: solid;\n  align-items: center;\n  min-height: 48px;\n  padding: 0 12px;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-cell {\n  font-size: 12px;\n  font-weight: 500;\n  color: rgba(0, 0, 0, .54);\n  flex: 1;\n}\n\n:host(.ng-table) /deep/ .ng-table-cell {\n  font-size: 14px;\n  color: rgba(0,0,0,.87);\n  flex: 1;\n}\n\n:host(.ng-table) /deep/ .ng-table-icon {\n  width: 40px;\n  height: 40px;\n}\n\n:host(.ng-table-striped) /deep/ .ng-table-row:nth-of-type(odd) {\n  background-color: #f9f9f9;\n}\n\n:host(.ng-table-striped.ng-table-hover) /deep/ .ng-table-row:hover {\n  background-color: #f5f5f5;\n}\n  "],
+                styles: ["\n:host(.ng-table) {\n  background: #fff;\n  overflow: auto;\n  display: table;\n  width: 100%;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-row,\n:host(.ng-table) /deep/ .ng-table-row {\n  display: table-row;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-cell,\n:host(.ng-table) /deep/ .ng-table-cell {\n  border-bottom-color: rgba(0, 0, 0, .12);\n  border-bottom-width: 1px;\n  border-bottom-style: solid;\n  padding: 12px;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-cell::before,\n:host(.ng-table) /deep/ .ng-table-cell::before {\n  content: \"\";\n  min-height: 48px;\n}\n\n:host(.ng-table) /deep/ .ng-table-header-cell {\n  font-size: 12px;\n  font-weight: 500;\n  color: rgba(0, 0, 0, .54);\n  display: table-cell;\n  white-space: nowrap;\n}\n\n:host(.ng-table) /deep/ .ng-table-cell {\n  font-size: 14px;\n  color: rgba(0,0,0,.87);\n  display: table-cell;\n}\n\n:host(.ng-table) /deep/ .ng-table-icon {\n  width: 40px;\n  height: 40px;\n}\n\n:host(.ng-table-striped) /deep/ .ng-table-row:nth-of-type(odd) {\n  background-color: #f9f9f9;\n}\n\n:host(.ng-table-striped.ng-table-hover) /deep/ .ng-table-row:hover {\n  background-color: #f5f5f5;\n}\n  "],
                 host: { 'class': 'ng-table' }
             },] },
 ];
 /** @nocollapse */
-NgTable.ctorParameters = function () { return [
-    { type: ActivatedRoute, },
-]; };
+NgTable.ctorParameters = function () { return []; };
 NgTable.propDecorators = {
     'initEmitter': [{ type: Output, args: ['init',] },],
     'destroyEmitter': [{ type: Output, args: ['destroy',] },],

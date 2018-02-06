@@ -1,9 +1,7 @@
 import { AfterViewInit, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgTableAfterConnectEvent, NgTableBeforeConnectEvent, NgTableDestroyEvent, NgTableInitEvent, NgTableRangeEvent, NgTableSourceUpdateEvent } from '../ngtable.events';
 import { NgTableSource } from '../ngtable.source';
 export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
-    private activeRoute;
     private _dataSourceSubscriber;
     private _rows;
     private _totalRows;
@@ -22,7 +20,7 @@ export declare class NgTable implements OnInit, AfterViewInit, OnDestroy {
     sourceUpdateEmitter: EventEmitter<NgTableSourceUpdateEvent>;
     afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent>;
     rangeChangeEmitter: EventEmitter<NgTableRangeEvent>;
-    constructor(activeRoute: ActivatedRoute);
+    constructor();
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

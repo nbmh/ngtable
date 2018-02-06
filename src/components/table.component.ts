@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {
   NgTableAfterConnectEvent,
   NgTableBeforeConnectEvent,
@@ -21,32 +20,41 @@ import {NgTableSource} from '../ngtable.source';
 :host(.ng-table) {
   background: #fff;
   overflow: auto;
-  display: flex;
-  flex-direction: column;
+  display: table;
+  width: 100%;
 }
 
 :host(.ng-table) /deep/ .ng-table-header-row,
 :host(.ng-table) /deep/ .ng-table-row {
+  display: table-row;
+}
+
+:host(.ng-table) /deep/ .ng-table-header-cell,
+:host(.ng-table) /deep/ .ng-table-cell {
   border-bottom-color: rgba(0, 0, 0, .12);
-  display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  align-items: center;
+  padding: 12px;
+}
+
+:host(.ng-table) /deep/ .ng-table-header-cell::before,
+:host(.ng-table) /deep/ .ng-table-cell::before {
+  content: "";
   min-height: 48px;
-  padding: 0 12px;
 }
 
 :host(.ng-table) /deep/ .ng-table-header-cell {
   font-size: 12px;
   font-weight: 500;
   color: rgba(0, 0, 0, .54);
-  flex: 1;
+  display: table-cell;
+  white-space: nowrap;
 }
 
 :host(.ng-table) /deep/ .ng-table-cell {
   font-size: 14px;
   color: rgba(0,0,0,.87);
-  flex: 1;
+  display: table-cell;
 }
 
 :host(.ng-table) /deep/ .ng-table-icon {
@@ -87,7 +95,7 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
   @Output('afterConnect') afterConnectEmitter: EventEmitter<NgTableAfterConnectEvent> = new EventEmitter<NgTableAfterConnectEvent>();
   @Output('rangeChange') rangeChangeEmitter: EventEmitter<NgTableRangeEvent> = new EventEmitter<NgTableRangeEvent>();
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor() {
 
   }
 
@@ -98,12 +106,18 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.initEmitter.emit(new NgTableInitEvent(this));
 
-    this._querySubscriber = this.activeRoute.queryParams.debounceTime(10).subscribe(params => {
+    // TODO: Change to parse params from window.location. RouterModule screws with lazy loading
+    /*this._querySubscriber = this.activeRoute.queryParams.debounceTime(10).subscribe(params => {
       this._initialized = true;
       this._page = params[this._queryPage] ? +params[this._queryPage] : 1;
 
       this.requestData();
-    });
+    });*/
+    this._initialized = true;
+    this._page = 1;
+
+    this.requestData();
+    //=================
   }
 
   ngOnDestroy() {
