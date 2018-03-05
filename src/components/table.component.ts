@@ -163,7 +163,7 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
     this._rows = rows;
     this._totalRows = totalRows;
     this._totalPages = Math.ceil(this._totalRows / this._dataSource.range);
-
+console.warn('calculate', this._page);
     if (this._page > this._totalPages) {
       this._page = 1;
     }
@@ -174,12 +174,13 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
     if (this._to > this._totalRows) {
       this._to = this._totalRows;
     }
+    console.warn('calculate', this._from, this._to);
   }
 
   protected requestData(): void {
     if (!this._dataSource.loading) {
       this._dataSource.params.offset = (this._page - 1) * this._dataSource.range;
-
+      console.warn('requestData', this._page, this._dataSource.range, this._dataSource.params.offset);
       let event: NgTableBeforeConnectEvent = new NgTableBeforeConnectEvent(this, this._dataSource.params);
 
       this.beforeConnectEmitter.emit(event);
@@ -274,7 +275,9 @@ export class NgTable implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   set range(value: number) {
     if (!this._dataSource.loading) {
+      this._page = 1;
       this._dataSource.range = +value;
+      this.requestData();
       this.rangeChangeEmitter.emit(new NgTableRangeEvent(this, this.range, this.rangeOptions));
     }
   }

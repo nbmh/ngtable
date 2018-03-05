@@ -66,13 +66,7 @@ export abstract class NgTableSource {
   }
 
   public set range(value: number) {
-    let wasSet: any = this._range != null;
-
     this._range = value;
-
-    if (!this._loading && wasSet) {
-      this.getData(this.params);
-    }
   }
 
   public get rangeOptions(): Array<number> {
